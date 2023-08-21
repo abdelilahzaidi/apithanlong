@@ -1,6 +1,8 @@
+import { UserGender } from './../enums/gender.enum';
 import { Exclude } from "class-transformer";
 import { Column, Entity, PrimaryGeneratedColumn } from "typeorm";
 import { UserStatus } from "../enums/status.enum";
+
 @Entity('users')
 export class UserEntity{
     @PrimaryGeneratedColumn()
@@ -12,8 +14,8 @@ export class UserEntity{
     @Column()
     last_name: string; 
 
-    @Column()
-    gender: string;
+    @Column({ type: 'enum', enum: UserGender, default: UserGender.MALE  })
+    gender: UserGender;
 
     @Column()
     birthDate: Date;
